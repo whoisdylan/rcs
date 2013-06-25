@@ -12,6 +12,7 @@ cmap w!! %!sudo tee > /dev/null %
 let mapleader = ","
 syntax on
 set background=dark
+call togglebg#map("<F5>")
 colorscheme solarized
 filetype plugin on
 set number
