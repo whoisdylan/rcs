@@ -22,6 +22,7 @@ set softtabstop=4
 set shiftwidth=4
 set smartindent
 set cursorline
+" set cursorcolumn
 set autoindent
 set smarttab
 set ttyfast
@@ -65,7 +66,9 @@ nnoremap <Leader><space> :noh<cr>
 nnoremap <leader>v V`]
 
 " open a new split and go to it
-nnoremap <leader>w <C-w>v<c-w>l
+nnoremap <leader>w <C-w>s<c-w>l
+" for vertical split
+nnoremap <leader>W <C-w>v<c-w>l
 
 " remap for C-moving windowsing
 nnoremap <C-h> <C-w>h
@@ -75,3 +78,7 @@ nnoremap <C-l> <C-w>l
 
 " make newlines in normal mode
 nnoremap <cr> o<esc>
+
+" enable rainbow parenthesis plugin
+let g:rainbow_active = 1
+let g:rainbow_operators = 1
