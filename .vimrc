@@ -1,6 +1,7 @@
 " pathogen stuff
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
+execute pathogen#infect()
 
 " allows saving with :w!! without opening with sudo, doesnt work
 cmap w!! %!sudo tee > /dev/null % 
