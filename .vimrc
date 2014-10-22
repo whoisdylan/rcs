@@ -4,6 +4,8 @@
 " execute pathogen#infect()
 
 " vundle stuff
+" run :PluginInstall to update plugins
+" or run vim +PluginInstall +qall from command line
 set nocompatible
 filetype off
 " set the runtime path to include vundle and initialize
@@ -15,6 +17,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'luochen1990/rainbow'
+Plugin 'whoisdylan/count_debugula'
 call vundle#end()
 
 " allows saving with :w!! without opening with sudo, doesnt work
