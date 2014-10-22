@@ -38,6 +38,7 @@ set mouse=a
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+set expandtab
 set smartindent
 set cursorline
 " set cursorcolumn
@@ -96,6 +97,9 @@ nnoremap <C-l> <C-w>l
 
 " make newlines in normal mode
 nnoremap <cr> o<esc>
+
+"make scala files have srhea's syntax highlighting
+autocmd BufRead,BufNewFile *.scala set filetype=scala 
 
 " enable rainbow parenthesis plugin
 let g:rainbow_active = 1
