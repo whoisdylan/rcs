@@ -1,7 +1,21 @@
 " pathogen stuff
 "call pathogen#runtime_append_all_bundles()
 "call pathogen#helptags()
-execute pathogen#infect()
+" execute pathogen#infect()
+
+" vundle stuff
+set nocompatible
+filetype off
+" set the runtime path to include vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'gmarik/Vundle.vim'
+" put plugins here
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'luochen1990/rainbow'
+call vundle#end()
 
 " allows saving with :w!! without opening with sudo, doesnt work
 cmap w!! %!sudo tee > /dev/null % 
@@ -15,12 +29,12 @@ syntax on
 set background=dark
 call togglebg#map("<F5>")
 colorscheme solarized
-filetype plugin on
+filetype plugin indent on
 set number
 set mouse=a
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set smartindent
 set cursorline
 " set cursorcolumn
