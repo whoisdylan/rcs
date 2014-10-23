@@ -99,7 +99,16 @@ nnoremap <C-l> <C-w>l
 nnoremap <cr> o<esc>
 
 "make scala files have srhea's syntax highlighting
-autocmd BufRead,BufNewFile *.scala set filetype=scala 
+autocmd BufRead,BufNewFile *.scala set filetype=scala
+" arduino syntax highlighting
+autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
+
+" enable go plugins
+filetype off
+filetype plugin indent off
+set runtimepath+=/usr/local/Cellar/go/1.2/libexec/misc/vim
+filetype on
+filetype plugin indent on
 
 " enable rainbow parenthesis plugin
 let g:rainbow_active = 1
