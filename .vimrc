@@ -18,6 +18,9 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tomtom/tcomment_vim'
 Plugin 'luochen1990/rainbow'
 Plugin 'whoisdylan/count_debugula'
+Plugin 'msanders/snipmate.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 
 " allows saving with :w!! without opening with sudo, doesnt work
@@ -97,6 +100,8 @@ nnoremap <C-l> <C-w>l
 
 " make newlines in normal mode
 nnoremap <cr> o<esc>
+
+map <leader>r :set relativenumber!<CR>
 
 "make scala files have srhea's syntax highlighting
 autocmd BufRead,BufNewFile *.scala set filetype=scala 
