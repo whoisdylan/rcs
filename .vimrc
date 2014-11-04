@@ -1,8 +1,3 @@
-" pathogen stuff
-"call pathogen#runtime_append_all_bundles()
-"call pathogen#helptags()
-" execute pathogen#infect()
-
 " vundle stuff
 " run :PluginInstall to update plugins
 " or run vim +PluginInstall +qall from command line
@@ -119,6 +114,8 @@ filetype plugin indent off
 set runtimepath+=/usr/local/Cellar/go/1.2/libexec/misc/vim
 filetype on
 filetype plugin indent on
+
+nnoremap <Leader>n :NERDTreeToggle<cr>
 
 " enable rainbow parenthesis plugin
 let g:rainbow_active = 1
