@@ -21,6 +21,8 @@ Plugin 'whoisdylan/count_debugula'
 Plugin 'msanders/snipmate.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'toyamarinyon/vim-swift'
+Plugin 'scrooloose/nerdtree'
 call vundle#end()
 
 " allows saving with :w!! without opening with sudo, doesnt work
