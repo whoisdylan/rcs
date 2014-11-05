@@ -47,7 +47,7 @@ set smarttab
 set ttyfast
 set undofile
 set showcmd
-set clipboard=unnamedplus
+" set clipboard=unnamedplus
 set ruler
 set backspace=indent,eol,start
 set splitbelow
