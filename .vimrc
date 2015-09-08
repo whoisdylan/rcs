@@ -18,6 +18,8 @@ Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'toyamarinyon/vim-swift'
 Plugin 'scrooloose/nerdtree'
+Plugin 'a.vim'
+" Plugin 'mtahmed/click.vim'
 call vundle#end()
 
 " allows saving with :w!! without opening with sudo, doesnt work
@@ -38,12 +40,16 @@ set mouse=a
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
+" set tabstop=8
+" set softtabstop=4
+" set shiftwidth=4
 set expandtab
 set smartindent
-set cursorline
-" set cursorcolumn
 set autoindent
 set smarttab
+" set cinoptions+=t0,g0
+set cursorline
+" set cursorcolumn
 set ttyfast
 set undofile
 set showcmd
@@ -98,10 +104,22 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+" map * in visual mode to search for highlighted text
+vnoremap * y/<C-R>"<CR>
+
 " make newlines in normal mode
 nnoremap <cr> o<esc>
 
 map <leader>r :set relativenumber!<CR>
+
+noremap <leader>a :AV<cr>
+
+" map %% to current file directory
+cabbr <expr> %% expand('%:p:h')
+
+" save and load sessions
+noremap <leader>s :mksession! ~/.vim_session<cr>
+noremap <leader>l :source ~/.vim_session<cr>
 
 "make scala files have srhea's syntax highlighting
 autocmd BufRead,BufNewFile *.scala set filetype=scala
@@ -120,6 +138,9 @@ nnoremap <Leader>n :NERDTreeToggle<cr>
 " enable rainbow parenthesis plugin
 let g:rainbow_active = 1
 let g:rainbow_operators = 1
+
+" append click include paths for a.vim
+" let g:alternateSearchPath = 'sfr:../include/click,../../lib'
 
 " " change cursor depending on vim mode:
 " " use an orange cursor in insert mode
@@ -140,3 +161,17 @@ let &t_EI .= "\<Esc>[2 q"
 " Recent versions of xterm (282 or above) also support
 " 5 -> blinking vertical bar
 " 6 -> solid vertical bar
+
+" ycm
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_confirm_extra_conf = 0
+nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
+nnoremap <Leader>G :YcmCompleter GoToDefinition<CR>
+
+" fugitive
+" add alias for :Gblame -w
+command Gblamew Gblame -w
+
+
+" enable semantic completion engine for YCM after typing any word in c++
+" let g:ycm_semantic_triggers =  { 'cpp,c,objcpp,objc' : ['re!\w+'] }
