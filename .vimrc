@@ -21,13 +21,11 @@ Plugin 'Valloric/YouCompleteMe'
 " Plugin 'toyamarinyon/vim-swift'
 " Plugin 'scrooloose/nerdtree'
 Plugin 'a.vim'
-Plugin 'rhysd/vim-clang-format'
-Plugin 'rust-lang/rust.vim'
-Plugin 'freitass/todo.txt-vim'
+"Plugin 'rhysd/vim-clang-format'
+"Plugin 'rust-lang/rust.vim'
+"Plugin 'freitass/todo.txt-vim'
 call vundle#end()
-
-" allows saving with :w!! without opening with sudo, doesnt work
-cmap w!! %!sudo tee > /dev/null % 
+filetype plugin indent on
 
 " fix highlighting color for solarized
 "hi Search ctermbg=7
@@ -38,7 +36,6 @@ syntax on
 set background=dark
 call togglebg#map("<F5>")
 colorscheme solarized
-filetype plugin indent on
 set number
 set mouse=a
 set tabstop=2
@@ -172,33 +169,12 @@ let g:rainbow_operators = 1
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_extra_conf_globlist = ['~/git/eonite/.ycm_extra_conf.py', '~/git/OSVR-Core/.ycm_extra_conf.py']
 let g:ycm_filetype_blacklist = {'python': 1}
 nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 nnoremap <Leader>G :YcmCompleter GoToDefinition<CR>
+" enable semantic completion engine for YCM after typing any word in c++
+" let g:ycm_semantic_triggers =  { 'cpp,c,objcpp,objc' : ['re!\w+'] }
 
 " fugitive
 " add alias for :Gblame -w
 command Gblamew Gblame -w
-
-" enable semantic completion engine for YCM after typing any word in c++
-" let g:ycm_semantic_triggers =  { 'cpp,c,objcpp,objc' : ['re!\w+'] }
-
-" a.vim include paths for OSVR
-let g:alternateSearchPath = 'sfr:../../../src/osvr/Client,sfr:../../../inc/osvr/Client'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/AnalysisPluginKit/,sfr:../../../inc/osvr/AnalysisPluginKit/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/ClientKit/,sfr:../../../inc/osvr/ClientKit/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/Connection/,sfr:../../../inc/osvr/Connection/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/Kalman/,sfr:../../../inc/osvr/Kalman/  '
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/PluginKit/,sfr:../../../inc/osvr/PluginKit/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/TypePack/,sfr:../../../inc/osvr/TypePack/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/Util/,sfr:../../../inc/osvr/Util/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/Common,sfr:../../../inc/osvr/Common'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/JointClientKit,sfr:../../../inc/osvr/JointClientKit'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/PluginHost,sfr:../../../inc/osvr/PluginHost'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/Server/,sfr:../../../inc/osvr/Server/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/USBSerial/,sfr:../../../inc/osvr/USBSerial/'
-let g:alternateSearchPath .= ',sfr:../../../src/osvr/VRPNServer/,sfr:../../../inc/osvr/VRPNServer/'
-
-" open cfg file for file being editted
-nnoremap <Leader>c :vsp %:r.cfg<CR>
