@@ -124,6 +124,9 @@ export EDITOR=vim
 
 eval "$(scmpuff init -s)"
 
+# solarized dircolors
+eval `dircolors /home/dylan/.dir_colors/dircolors`
+
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
@@ -131,6 +134,16 @@ alias viv='vim ~/.vimrc'
 alias vib='vim ~/.bashrc'
 alias sob='source ~/.bashrc'
 alias vit='vim ~/.todo.txt'
+alias vij='vim -O ~/Documents/journal/`date +%Y-%m`{,-overview}.txt'
 alias sshdo='ssh root@198.199.67.45'
 alias gc='git commit'
 alias gcm='git commit --amend'
+alias gg='git grep'
+alias gb='git branch'
+alias gco='git checkout'
+alias grbc='git rebase --continue'
+alias grba='git rebase --abort'
+
+# brt aliases
+alias sshch='ssh brt@cornhub'
+alias sshx='ssh nvidia@10.10.15.74'

@@ -41,9 +41,10 @@ set mouse=a
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-"set expandtab
+set expandtab
 set smartindent
 set autoindent
+set breakindent
 set smarttab
 " set cinoptions+=t0,g0
 set cursorline
@@ -142,6 +143,10 @@ autocmd! BufNewFile,BufRead *.ino setlocal ft=arduino
 " enable rainbow parenthesis plugin
 let g:rainbow_active = 1
 let g:rainbow_operators = 1
+let g:rainbow_conf = {
+      \ 'ctermfgs': ['darkgray', 'darkblue', 'darkmagenta', 'darkcyan'],
+      \ }
+nnoremap <F6> :RainbowToggle<CR>
 
 " append click include paths for a.vim
 " let g:alternateSearchPath = 'sfr:../include/click,../../lib'
@@ -168,8 +173,8 @@ let g:rainbow_operators = 1
 
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-let g:ycm_filetype_blacklist = {'python': 1}
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_filetype_blacklist = {'python': 1}
 nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 nnoremap <Leader>G :YcmCompleter GoToDefinition<CR>
 " enable semantic completion engine for YCM after typing any word in c++
@@ -177,4 +182,4 @@ nnoremap <Leader>G :YcmCompleter GoToDefinition<CR>
 
 " fugitive
 " add alias for :Gblame -w
-command Gblamew Gblame -w
+command! Gblamew Gblame -w
