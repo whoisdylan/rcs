@@ -56,12 +56,20 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+virtualenv=
+if [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ] ; then
+    if [ "$VIRTUAL_ENV" != "" ]; then
+        virtualenv="(`basename \"$VIRTUAL_ENV\"`) "
+    fi
+fi
+
+export PS1
 if [ "$color_prompt" = yes ]; then
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-		PROMPT_COMMAND='GIT_PS1_SHOWCOLORHINTS=true GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
+    PROMPT_COMMAND='GIT_PS1_SHOWCOLORHINTS=true GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[0;35m\]${virtualenv}\[\e[0m\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
 else
     # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-		PROMPT_COMMAND='GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)}\u@\h:\w" "\\\$ "'
+		PROMPT_COMMAND='GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)} (${virtualenv})\u@\h:\w" "\\\$ "'
 fi
 unset color_prompt force_color_prompt
 
@@ -145,5 +153,10 @@ alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 
 # brt aliases
-alias sshch='ssh brt@cornhub'
-alias sshx='ssh nvidia@10.10.15.74'
+alias sshch='ssh dylan@cornhub'
+# ssh xavier
+alias sshx='ssh -A nvidia@10.10.15.74'
+# ssh funzone (desktop)
+alias sshf='ssh -A dylan@10.10.14.6'
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
+export PATH=/usr/local/cuda/bin:$PATH
