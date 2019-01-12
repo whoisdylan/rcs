@@ -56,20 +56,21 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-virtualenv=
-if [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ] ; then
+get_virtualenv_prompt() {
+  if [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ] ; then
     if [ "$VIRTUAL_ENV" != "" ]; then
-        virtualenv="(`basename \"$VIRTUAL_ENV\"`) "
+      echo "(`basename \"$VIRTUAL_ENV\"`) "
     fi
-fi
+  fi
+}
 
 export PS1
 if [ "$color_prompt" = yes ]; then
     # PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-    PROMPT_COMMAND='GIT_PS1_SHOWCOLORHINTS=true GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[0;35m\]${virtualenv}\[\e[0m\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
+    PROMPT_COMMAND='GIT_PS1_SHOWCOLORHINTS=true GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)}\[\033[0;35m\]$(get_virtualenv_prompt)\[\e[0m\]\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]" "\\\$ "'
 else
     # PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-		PROMPT_COMMAND='GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)} (${virtualenv})\u@\h:\w" "\\\$ "'
+    PROMPT_COMMAND='GIT_PS1_SHOWDIRTYSTATE=true __git_ps1 "${debian_chroot:+($debian_chroot)}$(get_virtualenv_prompt)\u@\h:\w" "\\\$ "'
 fi
 unset color_prompt force_color_prompt
 
