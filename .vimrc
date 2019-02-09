@@ -117,7 +117,7 @@ map <leader>r :set relativenumber!<CR>
 noremap <leader>a :AV<cr>
 
 " map %% to current file directory
-cabbr <expr> %% expand('%:p:h')
+cabbr <expr> %% fnameescape(expand('%:p:h'))
 
 " save and load sessions
 noremap <leader>s :mksession! ~/.vim/.session.vim<cr>
