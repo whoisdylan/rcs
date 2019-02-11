@@ -161,3 +161,6 @@ alias sshx='ssh -A nvidia@10.10.15.74'
 alias sshf='ssh -A dylan@10.10.14.6'
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
+export PATH=/home/dylan/scripts:$PATH
+export PYTHONPATH=/home/dylan/scripts:$PYTHONPATH
+export MI_HOME=~/Programs/Aptina_Imaging
