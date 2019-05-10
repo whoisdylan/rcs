@@ -46,6 +46,8 @@ set smartindent
 set autoindent
 set breakindent
 set smarttab
+" set tabs to 4 spaces for python only
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=100
 " set cinoptions+=t0,g0
 set cursorline
 " set cursorcolumn
@@ -173,7 +175,7 @@ nnoremap <F6> :RainbowToggle<CR>
 
 " ycm
 let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:ycm_filetype_blacklist = {'python': 1}
 nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 nnoremap <Leader>G :YcmCompleter GoToDefinition<CR>

@@ -156,7 +156,7 @@ alias grba='git rebase --abort'
 # brt aliases
 alias sshch='ssh dylan@cornhub'
 # ssh xavier
-alias sshx='ssh -A nvidia@10.10.15.74'
+alias sshx='ssh -A dylan@10.10.15.74'
 # ssh funzone (desktop)
 alias sshf='ssh -A dylan@10.10.14.6'
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
