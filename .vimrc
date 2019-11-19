@@ -59,6 +59,9 @@ set ruler
 set backspace=indent,eol,start
 set splitbelow
 set splitright
+set wildignore=.*.swp,*.pyc,.*.un~
+set visualbell
+set noerrorbells
 au BufNewFile,BufRead *.c0 set filetype=c " for c0 compatibility
 
 " search options
