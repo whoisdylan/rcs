@@ -152,6 +152,7 @@ alias gb='git branch'
 alias gco='git checkout'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
+alias vpn='sudo openvpn --config ~/Downloads/dylan.koenig.ovpn'
 
 # brt aliases
 alias sshch='ssh dylan@cornhub'
