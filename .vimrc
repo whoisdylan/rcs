@@ -16,6 +16,7 @@ Plugin 'whoisdylan/count_debugula'
 " Plugin 'msanders/snipmate.vim'
 " Plugin 'tpope/vim-surround'
 Plugin 'Valloric/YouCompleteMe'
+" Plugin 'neoclide/coc.nvim', {'pinned': 1}
 " Plugin 'rdnetto/YCM-Generator'
 " Plugin 'jeaye/color_coded'
 " Plugin 'toyamarinyon/vim-swift'
@@ -24,6 +25,8 @@ Plugin 'a.vim'
 "Plugin 'rhysd/vim-clang-format'
 "Plugin 'rust-lang/rust.vim'
 "Plugin 'freitass/todo.txt-vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'hashivim/vim-terraform'
 call vundle#end()
 filetype plugin indent on
 
@@ -48,6 +51,8 @@ set breakindent
 set smarttab
 " set tabs to 4 spaces for python only
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab colorcolumn=100
+" set tabs for BRT go files
+autocmd FileType go setlocal noexpandtab
 " set cinoptions+=t0,g0
 set cursorline
 " set cursorcolumn
@@ -72,6 +77,14 @@ set smartcase
 
 " maintain context around cursor
 set scrolloff=3
+
+" show [x/y] count when searching
+set shortmess-=S
+
+" Fold config
+set foldmethod=syntax
+set foldlevelstart=99
+" au BufRead * normal zR
 
 " delete line without overwriting buffer
 nnoremap "_dd ,dd
@@ -177,14 +190,29 @@ nnoremap <F6> :RainbowToggle<CR>
 " 6 -> solid vertical bar
 
 " ycm
-let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" let g:ycm_autoclose_preview_window_after_insertion = 1
+" let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:ycm_filetype_blacklist = {'python': 1}
+let g:ycm_extra_conf_globlist = ['/data2/dylan.koenig/gits/shasta/*']
+let g:ycm_goto_buffer_command = 'split-or-existing-window'
 nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 nnoremap <Leader>G :YcmCompleter GoToDefinition<CR>
+nnoremap <Leader>t :YcmCompleter GetType<CR>
+nnoremap <leader>e <plug>(YCMHover)
+nnoremap <leader>yfd <Plug>(YCMFindSymbolInDocument)
+nnoremap <leader>yfw <Plug>(YCMFindSymbolInWorkspace)
+let g:ycm_auto_hover = ""
+" augroup MyYCMCustom
+"     autocmd!
+"       autocmd FileType c,cpp let b:ycm_hover = {
+"             \ 'command': 'GetDoc',
+"                 \ 'syntax': &filetype
+"           \ }
+" augroup END
 " enable semantic completion engine for YCM after typing any word in c++
 " let g:ycm_semantic_triggers =  { 'cpp,c,objcpp,objc' : ['re!\w+'] }
 
 " fugitive
 " add alias for :Gblame -w
-command! Gblamew Gblame -w
+command! Gblame Git blame
+command! Gblamew Git blame -w

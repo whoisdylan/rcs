@@ -128,13 +128,14 @@ if ! shopt -oq posix; then
 fi
 
 ### end of default .bashrc
-export PATH=$PATH:/usr/local/go/bin
+export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH
+export PATH=/data2/dylan.koenig/.local/bin:$PATH
 export EDITOR=vim
 
 eval "$(scmpuff init -s)"
 
 # solarized dircolors
-eval `dircolors /home/dylan/.dir_colors/dircolors`
+eval `dircolors ~/.dir_colors/dircolors`
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
@@ -153,6 +154,7 @@ alias gco='git checkout'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
 alias vpn='sudo openvpn --config ~/Downloads/dylan.koenig.ovpn'
+alias cdc='cd /data2/dylan.koenig/gits/shasta'
 
 # brt aliases
 alias sshch='ssh dylan@cornhub'
@@ -160,8 +162,28 @@ alias sshch='ssh dylan@cornhub'
 alias sshx='ssh -A dylan@10.10.15.74'
 # ssh funzone (desktop)
 alias sshf='ssh -A dylan@10.10.14.6'
+alias tf='terraform'
+alias tg='terragrunt'
+alias gpm='git push origin HEAD:refs/for/master'
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
 export PATH=/home/dylan/scripts:$PATH
 export PYTHONPATH=/home/dylan/scripts:$PYTHONPATH
 export MI_HOME=~/Programs/Aptina_Imaging
+# export AWS_PROFILE=shasta_dev_engineer-831342142039
+# export AWS_PROFILE=shasta_prod_engineer-759721480024
+alias go='go1.18.2'
+export DHOME=/data2/dylan.koenig
+alias svim='sudo /data2/dylan.koenig/.local/bin/vim'
+alias svs='cdc; bazel run -c opt //brt/vpu/simulations/local:simulate_vpu_services'
+alias sws='cdc; bazel run -c opt //brt/vpu/simulations/local:simulate_wacker'
+alias swc='cdc; bazel run -c opt //brt/vpu/simulations/local:simulate_wacker_client'
+alias svs2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_vpu_services'
+alias sws2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker'
+alias swc2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker_client'
+alias gsp='go tool pprof -http 10.10.15.30:8333'
+alias sc='screen -r code'
+alias sb='screen -r build'
+alias asd='aws sso login --profile brt_aws_shasta_dev'
+
+complete -C /usr/bin/terraform terraform
