@@ -185,5 +185,8 @@ alias gsp='go tool pprof -http 10.10.15.30:8333'
 alias sc='screen -r code'
 alias sb='screen -r build'
 alias asd='aws sso login --profile brt_aws_shasta_dev'
+alias br='bazel run -c opt'
+alias bb='bazel build -c opt'
+alias bt='bazel test -c opt'
 
 complete -C /usr/bin/terraform terraform
