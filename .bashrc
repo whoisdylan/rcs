@@ -129,7 +129,6 @@ fi
 
 ### end of default .bashrc
 export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH
-export PATH=/data2/dylan.koenig/.local/bin:$PATH
 export EDITOR=vim
 
 eval "$(scmpuff init -s)"
@@ -153,8 +152,8 @@ alias gb='git branch'
 alias gco='git checkout'
 alias grbc='git rebase --continue'
 alias grba='git rebase --abort'
-alias vpn='sudo openvpn --config ~/Downloads/dylan.koenig.ovpn'
-alias cdc='cd /data2/dylan.koenig/gits/shasta'
+alias vpn='openvpn3 session-start --config ~/Downloads/profile-960.ovpn'
+alias cdc='cd ~/gits/shasta'
 
 # brt aliases
 alias sshch='ssh dylan@cornhub'
@@ -172,21 +171,30 @@ export PYTHONPATH=/home/dylan/scripts:$PYTHONPATH
 export MI_HOME=~/Programs/Aptina_Imaging
 # export AWS_PROFILE=shasta_dev_engineer-831342142039
 # export AWS_PROFILE=shasta_prod_engineer-759721480024
-alias go='go1.18.2'
+# alias go='go1.18.2'
 export DHOME=/data2/dylan.koenig
-alias svim='sudo /data2/dylan.koenig/.local/bin/vim'
-alias svs='cdc; bazel run -c opt //brt/vpu/simulations/local:simulate_vpu_services'
-alias sws='cdc; bazel run -c opt //brt/vpu/simulations/local:simulate_wacker'
-alias swc='cdc; bazel run -c opt //brt/vpu/simulations/local:simulate_wacker_client'
-alias svs2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_vpu_services'
-alias sws2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker'
-alias swc2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker_client'
+alias svim='sudo vim'
 alias gsp='go tool pprof -http 10.10.15.30:8333'
 alias sc='screen -r code'
 alias sb='screen -r build'
+alias sr='screen -r'
+alias ss='screen -S'
 alias asd='aws sso login --profile brt_aws_shasta_dev'
+alias asp='aws sso login --profile brt_aws_shasta_prod'
 alias br='bazel run -c opt'
 alias bb='bazel build -c opt'
 alias bt='bazel test -c opt'
+alias svs='cdc; br //brt/vpu/simulations/local:simulate_vpu_services'
+alias sws='cdc; br //brt/vpu/simulations/local:simulate_wacker'
+alias swc='cdc; br //brt/vpu/simulations/local:simulate_wacker_client'
+alias ssvs='cdc; screen -dmS svs bazel run -c opt //brt/vpu/simulations/local:simulate_vpu_services'
+alias ssws='cdc; screen -dmS sws bazel run -c opt //brt/vpu/simulations/local:simulate_wacker'
+alias sswc='cdc; screen -dmS swc bazel run -c opt //brt/vpu/simulations/local:simulate_wacker_client'
+alias sall='ssvs && ssws && sswc'
+# provide a label in quotes, eg: bbcfv "my_special_image_1_2023-01-01
+alias bbcfv='bb --config=aarch64 //brt/vpu/release:complete_flash_vpu --stamp --embed_label'
+# alias svs2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_vpu_services'
+# alias sws2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker'
+# alias swc2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker_client'
 
 complete -C /usr/bin/terraform terraform

@@ -195,7 +195,7 @@ nnoremap <F6> :RainbowToggle<CR>
 let g:ycm_autoclose_preview_window_after_insertion = 1
 " let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " let g:ycm_filetype_blacklist = {'python': 1}
-let g:ycm_extra_conf_globlist = ['/data2/dylan.koenig/gits/shasta/*']
+let g:ycm_extra_conf_globlist = ['~/gits/shasta/*']
 let g:ycm_goto_buffer_command = 'split-or-existing-window'
 nnoremap <Leader>g :YcmCompleter GoToDeclaration<CR>
 nnoremap <Leader><C-g> :YcmCompleter GoToDefinition<CR>
