@@ -128,20 +128,43 @@ if ! shopt -oq posix; then
 fi
 
 ### end of default .bashrc
+
 export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH
 export EDITOR=vim
 
-eval "$(scmpuff init -s)"
+# enable ls colors
+export CLICOLOR=1
+export COLORTERM=1
 
-# solarized dircolors
-eval `dircolors ~/.dir_colors/dircolors`
+eval "$(scmpuff init -s)"
 
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  # silence mac zsh warning
+  export BASH_SILENCE_DEPRECATION_WARNING=1
+
+  # Set PATH, MANPATH, etc., for Homebrew.
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  export HOMEBREW_NO_ANALYTICS=1
+
+  if [ -f $(brew --prefix)/etc/bash_completion.d/git-prompt.sh ]; then
+      . $(brew --prefix)/etc/bash_completion.d/git-prompt.sh
+  fi
+  if [ -f $(brew --prefix)/etc/bash_completion.d/git-completion.bash ]; then
+      . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+  fi
+
+  alias vib='vim ~/.bash_profile'
+  alias sob='source ~/.bash_profile'
+else
+  # solarized dircolors
+  eval `dircolors /home/dylan/.dir_colors/dircolors`
+  alias vib='vim ~/.bashrc'
+  alias sob='source ~/.bashrc'
+fi
 alias viv='vim ~/.vimrc'
-alias vib='vim ~/.bashrc'
-alias sob='source ~/.bashrc'
 alias vit='vim ~/.todo.txt'
 alias vij='vim -O ~/Documents/journal/`date +%Y-%m`{,-overview}.txt'
 alias sshdo='ssh root@198.199.67.45'
@@ -163,6 +186,13 @@ alias sshx='ssh -A dylan@10.10.15.74'
 alias sshf='ssh -A dylan@10.10.14.6'
 alias tf='terraform'
 alias tg='terragrunt'
+# ssh cmbr2
+alias sshc='caffeinate -i ssh -A dylan.koenig@cmbr2'
+# ssh home desktop
+alias sshp='caffeinate -i ssh -A dylan.koenig@192.168.0.122'
+# reverse port forward to cmbr2 for grabler
+alias rsshc='ssh -R 3001:cmbr2:3000 cmbr2'
+alias cdc='cd ~/gits/shasta'
 alias gpm='git push origin HEAD:refs/for/master'
 export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 export PATH=/usr/local/cuda/bin:$PATH
@@ -198,3 +228,5 @@ alias bbcfv='bb --config=aarch64 //brt/vpu/release:complete_flash_vpu --stamp --
 # alias swc2='cdc; bazel run //brt/vpu/simulations/local:simulate_db15_vpu0_0a_gen4_wacker_client'
 
 complete -C /usr/bin/terraform terraform
+
+export PATH="/opt/homebrew/opt/node@18/bin:$PATH"
